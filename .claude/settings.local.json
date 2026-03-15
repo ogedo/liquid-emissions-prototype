@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(cd /c/ReveenueCollect/apps/web && npm install 2>&1 | tail -20)",
+      "Bash(cd /c/ReveenueCollect/apps/web && npm install 2>&1 | tail -15)",
+      "Bash(cd /c/ReveenueCollect/apps/web && npm run build 2>&1 | tail -60)",
+      "Bash(cd /c/ReveenueCollect/apps/web && npm run build 2>&1 | tail -80)",
+      "Bash(cd /c/ReveenueCollect/apps/web && npx tsc --noEmit 2>&1 | head -100)",
+      "Bash(cd /c/ReveenueCollect/apps/web && npm run build 2>&1 | head -100)",
+      "Bash(cd /c/ReveenueCollect/apps/web && npm run build 2>&1 | tail -50)",
+      "Bash(cd /c/ReveenueCollect/apps/web && npm run build 2>&1 | grep -E \"✓|✗|Error|error|Route\" | head -30)",
+      "Bash(cd c:/ReveenueCollect/apps/web && npm run build 2>&1 | tail -20)",
+      "Bash(cd c:/ReveenueCollect/apps/web && npm run build 2>&1 | grep -E \"\\(error|Error|warning|Route|✓|✗|Failed\\)\" | head -40)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3002/login && echo \"\" && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3002/admin/settlements && echo \"\" && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3002/api/assessment/NIMASA-2026-00847 && echo \"\" && curl -s http://localhost:3002/api/assessment/NIMASA-2026-00847 | python -m json.tool 2>/dev/null | head -12)",
+      "Bash(curl -s http://localhost:3002/api/fx-rate | python -m json.tool 2>/dev/null && echo \"\" && curl -s http://localhost:3002/api/assessment/NIMASA-2026-00441 | python -m json.tool 2>/dev/null | head -622)",
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Bash(echo \"=== $f: line 1 ===\")",
+      "Read(//c/ReveenueCollect/apps/web/**)",
+      "Bash(done)",
+      "Bash(cd c:/ReveenueCollect/apps/web && npm run build 2>&1 | tail -15)",
+      "Bash(cd c:/ReveenueCollect/apps/web && npm run build 2>&1 | grep -E \"\\(error TS|Error:|✓ Compiled|✓ Generating|Build error\\)\" | head -20)",
+      "Bash(ls c:/ReveenueCollect/apps/web/postcss* c:/ReveenueCollect/apps/web/*.config* 2>/dev/null)",
+      "Bash(curl -s http://localhost:3002/login | grep -o 'href=\"[^\"]*\\\\.css[^\"]*\"')",
+      "Bash(curl -s \"http://localhost:3002/_next/static/css/app/layout.css?v=1773611772680\" | grep -o \"bg-navy\\\\|\\\\.navy\\\\|#0D1B3E\\\\|008B8B\\\\|\\\\.teal\" | head -10)",
+      "Bash(curl -s \"http://localhost:3002/_next/static/css/app/layout.css?v=1773611772680\" | head -3 | cut -c1-300)",
+      "Bash(vercel --version 2>/dev/null || echo \"not installed\"\ngit --version 2>/dev/null\ngh --version 2>/dev/null | head -1)",
+      "Bash(cat > c:/ReveenueCollect/.gitignore << 'EOF'\n# Dependencies\nnode_modules/\n.pnp\n.pnp.js\n\n# Next.js\n.next/\nout/\nbuild/\ndist/\n\n# Env\n.env\n.env.local\n.env.*.local\n\n# Misc\n.DS_Store\n*.pem\nThumbs.db\n\n# Debug\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\n\n# Turbo\n.turbo/\n\n# Vercel\n.vercel/\nEOF\necho \"done\")"
+    ]
+  }
+}
