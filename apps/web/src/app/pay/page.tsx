@@ -78,7 +78,7 @@ function StepIndicator({ currentStep }: { currentStep: Step }) {
 export default function PayPage() {
   const router = useRouter();
   const [step, setStep] = useState<Step>(1);
-  const [refInput, setRefInput] = useState("NIMASA-2026-00441");
+  const [refInput, setRefInput] = useState("NIMASA-2026-00847");
   const [lookingUp, setLookingUp] = useState(false);
   const [lookupError, setLookupError] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState<"USD" | "NGN" | null>(null);

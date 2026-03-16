@@ -58,7 +58,7 @@ export default function LoginPage() {
           {/* Quote */}
           <div className="border-l-4 border-teal pl-5 py-1">
             <p className="text-white/80 text-sm italic leading-relaxed">
-              "Transparent, automated, and compliant — Nigeria's first maritime emission fee collection platform trusted by over 40 shipping operators."
+              "Transparent, automated, and compliant — Nigeria's first maritime emission fee collection platform covering 840 vessels across all major Nigerian ports."
             </p>
             <p className="text-teal text-xs font-semibold mt-2 uppercase tracking-wider">Blue Wave Operations Team</p>
           </div>
@@ -71,12 +71,12 @@ export default function LoginPage() {
             <p className="text-white/40 text-xs mt-0.5">Projected Annual Revenue</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-white">47</p>
-            <p className="text-white/40 text-xs mt-0.5">Registered Operators</p>
+            <p className="text-2xl font-bold text-white">840</p>
+            <p className="text-white/40 text-xs mt-0.5">Vessels &gt;5,000 GRT</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-white">5</p>
-            <p className="text-white/40 text-xs mt-0.5">Nigerian Ports</p>
+            <p className="text-2xl font-bold text-white">8.4M</p>
+            <p className="text-white/40 text-xs mt-0.5">Tonnes CO₂e p.a.</p>
           </div>
         </div>
       </div>
