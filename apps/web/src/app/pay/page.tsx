@@ -19,6 +19,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { mockAssessment } from "@/lib/mock-data";
 import { formatCurrency } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { FlutterwaveModal } from "@/components/gateways/flutterwave-modal";
+import { PaystackModal } from "@/components/gateways/paystack-modal";
 
 type Step = 1 | 2 | 3 | 4;
 
@@ -82,7 +84,7 @@ export default function PayPage() {
   const [lookingUp, setLookingUp] = useState(false);
   const [lookupError, setLookupError] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState<"USD" | "NGN" | null>(null);
-  const [paying, setPaying] = useState(false);
+  const [activeGateway, setActiveGateway] = useState<"USD" | "NGN" | null>(null);
 
   const assessment = mockAssessment;
 
@@ -124,12 +126,18 @@ export default function PayPage() {
     setStep(3);
   };
 
-  const handlePay = async (currency: "USD" | "NGN") => {
+  const handleOpenGateway = (currency: "USD" | "NGN") => {
     setSelectedCurrency(currency);
-    setPaying(true);
-    await new Promise((r) => setTimeout(r, 2000));
-    setPaying(false);
+    setActiveGateway(currency);
+  };
+
+  const handleGatewaySuccess = () => {
+    setActiveGateway(null);
     setStep(4);
+  };
+
+  const handleGatewayCancel = () => {
+    setActiveGateway(null);
   };
 
   return (
@@ -335,17 +343,9 @@ export default function PayPage() {
                     <Button
                       variant="navy"
                       className="w-full"
-                      onClick={() => handlePay("USD")}
-                      disabled={paying}
+                      onClick={() => handleOpenGateway("USD")}
                     >
-                      {paying && selectedCurrency === "USD" ? (
-                        <>
-                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                          Processing…
-                        </>
-                      ) : (
-                        "Pay in USD"
-                      )}
+                      Pay in USD
                     </Button>
                   </div>
 
@@ -364,17 +364,9 @@ export default function PayPage() {
                     <Button
                       variant="teal"
                       className="w-full"
-                      onClick={() => handlePay("NGN")}
-                      disabled={paying}
+                      onClick={() => handleOpenGateway("NGN")}
                     >
-                      {paying && selectedCurrency === "NGN" ? (
-                        <>
-                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                          Processing…
-                        </>
-                      ) : (
-                        "Pay in Naira"
-                      )}
+                      Pay in Naira
                     </Button>
                   </div>
                 </div>
@@ -460,6 +452,27 @@ export default function PayPage() {
           </Card>
         )}
       </div>
+
+      {/* ── Payment Gateway Modals ── */}
+      {activeGateway === "USD" && (
+        <FlutterwaveModal
+          amount={assessment.totalDue}
+          vesselName={assessment.vesselName}
+          paymentRefId={assessment.paymentRefId}
+          onSuccess={handleGatewaySuccess}
+          onCancel={handleGatewayCancel}
+        />
+      )}
+      {activeGateway === "NGN" && (
+        <PaystackModal
+          amountNGN={assessment.totalDueNGN}
+          amountUSD={assessment.totalDue}
+          vesselName={assessment.vesselName}
+          paymentRefId={assessment.paymentRefId}
+          onSuccess={handleGatewaySuccess}
+          onCancel={handleGatewayCancel}
+        />
+      )}
     </div>
   );
 }
